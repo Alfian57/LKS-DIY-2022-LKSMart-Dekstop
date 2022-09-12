@@ -16,6 +16,7 @@ namespace Toko
     {
         LKSMartDataContext db;
         string imagePath;
+        Image cusImage = null;
         public FProfile()
         {
             InitializeComponent();
@@ -49,20 +50,16 @@ namespace Toko
                 cbGender.SelectedIndex = 1;
             }
 
+            cusImage = Image.FromFile(path + "default_profile_picture.png");
             if (customer.profile_image_name != null)
             {
                 string imagePath = path + customer.profile_image_name;
                 if (File.Exists(imagePath))
                 {
-                    pbAvatar.Image = Image.FromFile(imagePath);
-                } else
-                {
-                    pbAvatar.Image = Image.FromFile(path + "default_profile_picture.png");
+                    cusImage = Image.FromFile(imagePath);
                 }
-            } else
-            {
-                pbAvatar.Image = Image.FromFile(path + "default_profile_picture.png");
             }
+            pbAvatar.Invoke((MethodInvoker)delegate { pbAvatar.Image = cusImage; });
         }
 
         private void btnName_Click(object sender, EventArgs e)
@@ -193,6 +190,7 @@ namespace Toko
                             where c.id == CurrentCustomer.id
                             select c).SingleOrDefault();
 
+            cusImage.Dispose();
             try
             {
                 if (File.Exists(path + CurrentCustomer.profile_image_name) || CurrentCustomer.profile_image_name == null)
@@ -212,13 +210,11 @@ namespace Toko
                         return;
                     }
                 }
-            } catch(Exception)
+            } catch(Exception ex)
             {
+                MessageBox.Show(ex.ToString());
                 MessageBox.Show("Image Failed To Update", "Update Profile", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
-            MessageBox.Show("Image Failed To Update", "Update Profile", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
         }
 
         private void pbAvatar_Click(object sender, EventArgs e)

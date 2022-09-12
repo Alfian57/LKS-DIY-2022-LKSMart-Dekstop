@@ -13,6 +13,7 @@ namespace Toko
 {
     public partial class FMain : Form
     {
+        Image cusImage = null;
         public FMain()
         {
             InitializeComponent();
@@ -30,20 +31,15 @@ namespace Toko
                 txtWelcome.Text = "Welcome, " + customer.name + "!";
             }
             
+            cusImage = Image.FromFile(path + "default_profile_picture.png");
             if (customer.profile_image_name != null)
             {
                 string imagePath = path + customer.profile_image_name;
                 if (File.Exists(imagePath)) {
-                    pbAvatar.Image = Image.FromFile(imagePath);
-                }else
-                {
-                    pbAvatar.Image = Image.FromFile(path + "default_profile_picture.png");
+                    cusImage = Image.FromFile(imagePath);
                 }
-            }else
-            {
-                pbAvatar.Image = Image.FromFile(path + "default_profile_picture.png");
             }
-            
+            pbAvatar.Image = cusImage;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -63,6 +59,7 @@ namespace Toko
 
         private void pictureBox2_Click(object sender, EventArgs e)
         {
+            cusImage.Dispose();
             new FProfile().Show();
             this.Hide();
         }
