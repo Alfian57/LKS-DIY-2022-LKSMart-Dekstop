@@ -1,0 +1,104 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="LKSMart">
+  <DataContextMoniker Name="/LKSMartDataContext" />
+  <nestedChildShapes>
+    <classShape Id="90ffc8fe-856c-4fec-9458-909e9182fc18" absoluteBounds="2.875, 0.625, 2, 1.9631982421875">
+      <DataClassMoniker Name="/LKSMartDataContext/Category" />
+      <nestedChildShapes>
+        <elementListCompartment Id="bd0aaf03-a0d4-403c-832e-648302114855" absoluteBounds="2.8899999999999997, 1.085, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(3.58363627929688 : 2.5881982421875); (3.58363627929688 : 2.8381982421875); (4.18023818359375 : 2.8381982421875); (4.18023818359375 : 2.5881982421875)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/LKSMartDataContext/Category/Category_Category" />
+      <nodes>
+        <classShapeMoniker Id="90ffc8fe-856c-4fec-9458-909e9182fc18" />
+        <classShapeMoniker Id="90ffc8fe-856c-4fec-9458-909e9182fc18" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="120ca1d8-0bcd-44c3-9f8b-5a81d5043f3d" absoluteBounds="3.75, 3.875, 2, 3.3093082682291666">
+      <DataClassMoniker Name="/LKSMartDataContext/Customer" />
+      <nestedChildShapes>
+        <elementListCompartment Id="ed2ae642-3463-45ce-a018-00437631da76" absoluteBounds="3.765, 4.335, 1.9700000000000002, 2.7493082682291665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="11566a8a-bca5-46c3-b7ba-3001264d3273" absoluteBounds="0.5, 0.5, 2, 2.3478011067708335">
+      <DataClassMoniker Name="/LKSMartDataContext/DetailTransaction" />
+      <nestedChildShapes>
+        <elementListCompartment Id="dd8254f7-a874-4b5c-9ff5-728bf5f4f04e" absoluteBounds="0.51499999999999968, 0.96, 1.9700000000000002, 1.7878011067708335" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="efe152f7-7556-47c6-b205-7f2d492e5ff5" absoluteBounds="0.625, 3.875, 2, 2.7324039713541666">
+      <DataClassMoniker Name="/LKSMartDataContext/HeaderTransaction" />
+      <nestedChildShapes>
+        <elementListCompartment Id="d3876c83-9d33-4d31-ae0e-a91c553d0dcd" absoluteBounds="0.63999999999999968, 4.335, 1.9700000000000002, 2.1724039713541665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(1.5625 : 3.875); (1.5625 : 2.84780110677083)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/LKSMartDataContext/HeaderTransaction/HeaderTransaction_DetailTransaction" />
+      <nodes>
+        <classShapeMoniker Id="efe152f7-7556-47c6-b205-7f2d492e5ff5" />
+        <classShapeMoniker Id="11566a8a-bca5-46c3-b7ba-3001264d3273" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(3.75 : 5.24120198567708); (3.58333333333333 : 5.24120198567708 : JumpStart); (3.41666666666667 : 5.24120198567708 : JumpEnd); (2.625 : 5.24120198567708)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/LKSMartDataContext/Customer/Customer_HeaderTransaction" />
+      <nodes>
+        <classShapeMoniker Id="120ca1d8-0bcd-44c3-9f8b-5a81d5043f3d" />
+        <classShapeMoniker Id="efe152f7-7556-47c6-b205-7f2d492e5ff5" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="6f315e8f-52b6-4976-8794-8dd3e754f612" absoluteBounds="7.5, 1.375, 2, 1.7708968098958331">
+      <DataClassMoniker Name="/LKSMartDataContext/PaymentType" />
+      <nestedChildShapes>
+        <elementListCompartment Id="c1a084a4-3dfb-4064-89f7-88fa11d0b90c" absoluteBounds="7.515, 1.835, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(8.5 : 3.14589680989583); (8.5 : 3.625); (3 : 3.625); (3 : 4.52684899283854); (2.625 : 4.52684899283854)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/LKSMartDataContext/PaymentType/PaymentType_HeaderTransaction" />
+      <nodes>
+        <classShapeMoniker Id="6f315e8f-52b6-4976-8794-8dd3e754f612" />
+        <classShapeMoniker Id="efe152f7-7556-47c6-b205-7f2d492e5ff5" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="ce379afb-8a8f-41b5-90ca-a6f3fd649bd7" absoluteBounds="7.25, 4.25, 2, 2.7324039713541666">
+      <DataClassMoniker Name="/LKSMartDataContext/PointHistory" />
+      <nestedChildShapes>
+        <elementListCompartment Id="fb54ee9f-bac7-4f40-9bb4-f587a09323a1" absoluteBounds="7.265, 4.71, 1.9700000000000002, 2.1724039713541665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(5.75 : 5.61620198567708); (7.25 : 5.61620198567708)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/LKSMartDataContext/Customer/Customer_PointHistory" />
+      <nodes>
+        <classShapeMoniker Id="120ca1d8-0bcd-44c3-9f8b-5a81d5043f3d" />
+        <classShapeMoniker Id="ce379afb-8a8f-41b5-90ca-a6f3fd649bd7" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(2.625 : 5.95555497851563); (3.5 : 5.95555497851563); (3.5 : 3.7276025390625); (8.25 : 3.7276025390625); (8.25 : 4.25)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/LKSMartDataContext/HeaderTransaction/HeaderTransaction_PointHistory" />
+      <nodes>
+        <classShapeMoniker Id="efe152f7-7556-47c6-b205-7f2d492e5ff5" />
+        <classShapeMoniker Id="ce379afb-8a8f-41b5-90ca-a6f3fd649bd7" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="70886d17-449d-4cd3-aae7-2f8f4d4693aa" absoluteBounds="5.375, 0.875, 2, 2.5401025390625">
+      <DataClassMoniker Name="/LKSMartDataContext/Product" />
+      <nestedChildShapes>
+        <elementListCompartment Id="ad015733-e8e3-4bec-a3be-c010dc377bfc" absoluteBounds="5.39, 1.335, 1.9700000000000002, 1.9801025390625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(5.375 : 2.6819482421875); (4.26357151692708 : 2.6819482421875 : JumpStart); (4.09690485026042 : 2.6819482421875 : JumpEnd); (3.66696961263021 : 2.6819482421875 : JumpStart); (3.50030294596354 : 2.6819482421875 : JumpEnd); (2.5 : 2.6819482421875)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/LKSMartDataContext/Product/Product_DetailTransaction" />
+      <nodes>
+        <classShapeMoniker Id="70886d17-449d-4cd3-aae7-2f8f4d4693aa" />
+        <classShapeMoniker Id="11566a8a-bca5-46c3-b7ba-3001264d3273" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(4.875 : 1.73159912109375); (5.375 : 1.73159912109375)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/LKSMartDataContext/Category/Category_Product" />
+      <nodes>
+        <classShapeMoniker Id="90ffc8fe-856c-4fec-9458-909e9182fc18" />
+        <classShapeMoniker Id="70886d17-449d-4cd3-aae7-2f8f4d4693aa" />
+      </nodes>
+    </associationConnector>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>

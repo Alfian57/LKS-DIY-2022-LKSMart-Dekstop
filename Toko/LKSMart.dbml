@@ -1,0 +1,108 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="LKSMart" Class="LKSMartDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=SMKN1BANTUL;Initial Catalog=LKSMart;Integrated Security=True" SettingsObjectName="Toko.Properties.Settings" SettingsPropertyName="LKSMartConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Category" Member="Categories">
+    <Type Name="Category">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="parent_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="name" Type="System.String" DbType="VarChar(200) NOT NULL" CanBeNull="false" />
+      <Column Name="created_at" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="last_updated_at" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="deleted_at" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="Category_Category" Member="Categories" ThisKey="id" OtherKey="parent_id" Type="Category" />
+      <Association Name="Category_Product" Member="Products" ThisKey="id" OtherKey="category_id" Type="Product" />
+      <Association Name="Category_Category" Member="Category1" ThisKey="parent_id" OtherKey="id" Type="Category" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Customer" Member="Customers">
+    <Type Name="Customer">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="name" Type="System.String" DbType="VarChar(200) NOT NULL" CanBeNull="false" />
+      <Column Name="phone_number" Type="System.String" DbType="VarChar(200) NOT NULL" CanBeNull="false" />
+      <Column Name="email" Type="System.String" DbType="VarChar(200) NOT NULL" CanBeNull="false" />
+      <Column Name="pin_number" Type="System.String" DbType="VarChar(6) NOT NULL" CanBeNull="false" />
+      <Column Name="date_of_birth" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="address" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="gender" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="point" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="profile_image_name" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="created_at" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="last_updated_at" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="deleted_at" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="Customer_HeaderTransaction" Member="HeaderTransactions" ThisKey="id" OtherKey="customer_id" Type="HeaderTransaction" />
+      <Association Name="Customer_PointHistory" Member="PointHistories" ThisKey="id" OtherKey="customer_id" Type="PointHistory" />
+    </Type>
+  </Table>
+  <Table Name="dbo.DetailTransaction" Member="DetailTransactions">
+    <Type Name="DetailTransaction">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="header_transaction_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="product_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="price" Type="System.Decimal" DbType="Decimal(10,2) NOT NULL" CanBeNull="false" />
+      <Column Name="quantity" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="created_at" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="last_updated_at" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="deleted_at" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="HeaderTransaction_DetailTransaction" Member="HeaderTransaction" ThisKey="header_transaction_id" OtherKey="id" Type="HeaderTransaction" IsForeignKey="true" />
+      <Association Name="Product_DetailTransaction" Member="Product" ThisKey="product_id" OtherKey="id" Type="Product" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.HeaderTransaction" Member="HeaderTransactions">
+    <Type Name="HeaderTransaction">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="customer_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="payment_type_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="datetime" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="sub_total" Type="System.Decimal" DbType="Decimal(10,2) NOT NULL" CanBeNull="false" />
+      <Column Name="point_used" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="payment_code" Type="System.String" DbType="VarChar(200) NOT NULL" CanBeNull="false" />
+      <Column Name="created_at" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="last_updated_at" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="deleted_at" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="HeaderTransaction_DetailTransaction" Member="DetailTransactions" ThisKey="id" OtherKey="header_transaction_id" Type="DetailTransaction" />
+      <Association Name="HeaderTransaction_PointHistory" Member="PointHistories" ThisKey="id" OtherKey="header_transaction_id" Type="PointHistory" />
+      <Association Name="Customer_HeaderTransaction" Member="Customer" ThisKey="customer_id" OtherKey="id" Type="Customer" IsForeignKey="true" />
+      <Association Name="PaymentType_HeaderTransaction" Member="PaymentType" ThisKey="payment_type_id" OtherKey="id" Type="PaymentType" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.PaymentType" Member="PaymentTypes">
+    <Type Name="PaymentType">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="name" Type="System.String" DbType="VarChar(200) NOT NULL" CanBeNull="false" />
+      <Column Name="created_at" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="last_updated_at" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="deleted_at" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="PaymentType_HeaderTransaction" Member="HeaderTransactions" ThisKey="id" OtherKey="payment_type_id" Type="HeaderTransaction" />
+    </Type>
+  </Table>
+  <Table Name="dbo.PointHistory" Member="PointHistories">
+    <Type Name="PointHistory">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="customer_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="header_transaction_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="point_gained" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="point_deducted" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="point_before" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="point_after" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="created_at" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="last_updated_at" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="deleted_at" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="Customer_PointHistory" Member="Customer" ThisKey="customer_id" OtherKey="id" Type="Customer" IsForeignKey="true" />
+      <Association Name="HeaderTransaction_PointHistory" Member="HeaderTransaction" ThisKey="header_transaction_id" OtherKey="id" Type="HeaderTransaction" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Product" Member="Products">
+    <Type Name="Product">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="category_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="name" Type="System.String" DbType="VarChar(200) NOT NULL" CanBeNull="false" />
+      <Column Name="price" Type="System.Decimal" DbType="Decimal(10,2) NOT NULL" CanBeNull="false" />
+      <Column Name="stock" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="image_name" Type="System.String" DbType="VarChar(200)" CanBeNull="true" />
+      <Column Name="created_at" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="last_updated_at" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="deleted_at" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="Product_DetailTransaction" Member="DetailTransactions" ThisKey="id" OtherKey="product_id" Type="DetailTransaction" />
+      <Association Name="Category_Product" Member="Category" ThisKey="category_id" OtherKey="id" Type="Category" IsForeignKey="true" />
+    </Type>
+  </Table>
+</Database>
