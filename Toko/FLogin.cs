@@ -25,9 +25,16 @@ namespace Toko
                 return;
             }
             LKSMartDataContext db = new LKSMartDataContext();
+
+            string phoneNum = txtEmailOrPhone.Text;
+            if (Int64.TryParse(phoneNum, out var data))
+            {
+                phoneNum = phoneNum.Insert(1, "-").Insert(5, "-").Insert(9 ,"-");
+            }
+
             var customer = (from c in db.Customers
                            where c.email == txtEmailOrPhone.Text ||
-                           c.phone_number == txtEmailOrPhone.Text &&
+                           c.phone_number == phoneNum &&
                            c.deleted_at == null
                            select c).SingleOrDefault();
 
