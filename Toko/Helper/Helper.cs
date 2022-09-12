@@ -14,6 +14,25 @@ namespace Toko.Helper
 
         public static void addCart(int id, int qty)
         {
+            LKSMartDataContext db = new LKSMartDataContext();
+            var product = (from p in db.Products
+                           where p.id == id
+                           select p).SingleOrDefault();
+
+            foreach (var item in Cart)
+            {
+                if (item.Key == id)
+                {
+                    Cart[item.Key] += qty;
+
+                    if (Cart[item.Key] > product.stock)
+                    {
+                        Cart[item.Key] = product.stock;
+                    }
+
+                    return;
+                }
+            }
             Cart.Add(id, qty);
         }
 
